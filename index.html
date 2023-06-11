@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer scr="./js/app.js"></script>
+    <script defer src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>WWM</title>
+  </head>
+  <body>
+    <div class="container mx-auto title-section">
+      <h1 class="main-title">Will Watch Movie</h1>
+      <div class="top-bar">
+        <form id="searchForm">
+          <input type="search" name="searchQuery" />
+          <button class="" type="submit">Search</button>
+        </form>
+        <div class="action-butons">
+          <button class="tile-action" data-action="one-col">&#8801;</button>
+          <button class="tile-action is-active" data-action="three-col">
+            &#8230;
+          </button>
+          <button class="">Add new movie</button>
+        </div>
+      </div>
+      <div class="three-col" id="movie-list"></div>
+    </div>
+  </body>
+</html>

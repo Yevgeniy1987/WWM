@@ -4,16 +4,16 @@ const movieElem = document.getElementById("movie-list");
 
 const searchForm = document.getElementById("searchForm");
 
-const MOVIES = [];
+let MOVIES = [];
 
 const URL_BASE = `http://localhost:3333`;
 
-fetch(`http://localhost:3333/movies`)
+fetch(`${URL_BASE}/movies`)
   .then((res) => res.json())
   .then((data) => {
     MOVIES = data;
     renderMovieList(movieElem, MOVIES, true);
-    console.log(MOVIES)
+    console.log(MOVIES);
   });
 
 function createMovieCard(card) {
@@ -54,7 +54,6 @@ function createMovieCard(card) {
 function renderMovieList(to, array, clear) {
   if (clear) {
     to.innerHTML = "";
-    console.log(to);
   }
   array.forEach((card) => {
     const movieHTML = createMovieCard(card);

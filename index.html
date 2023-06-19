@@ -3,28 +3,101 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer scr="./js/app.js"></script>
+    <script defer src="./js/app.js"></script>
     <script defer src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./css/style.css" />
     <title>WWM</title>
   </head>
   <body>
     <div class="container mx-auto title-section">
-      <h1 class="main-title">Will Watch Movie</h1>
+      <div class="wrapper">
+        <h1 class="top">Will Watch Movie</h1>
+        <h1 class="bottom" aria-hidden="true">Will Watch Movie</h1>
+      </div>
+
       <div class="top-bar">
         <form id="searchForm">
           <input type="search" name="searchQuery" />
-          <button class="" type="submit">Search</button>
+          <button
+            class="h-7 w-28 bg-gradient-to-r from-violet-500 to-fuchsia-500 border rounded"
+            type="submit"
+          >
+            Search
+          </button>
         </form>
         <div class="action-butons">
-          <button class="tile-action" data-action="one-col">&#8801;</button>
-          <button class="tile-action is-active" data-action="three-col">
+          <button
+            class="h-7 w-5 border bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded"
+            data-action="one-col"
+          >
+            &#8801;
+          </button>
+          <button
+            class="h-7 w-5 border is-active bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded"
+            data-action="three-col"
+          >
             &#8230;
           </button>
-          <button class="">Add new movie</button>
+          <button
+            id="addNewMovieBtn"
+            class="h-7 w-32 bg-gradient-to-r from-violet-500 to-fuchsia-500 border rounded"
+          >
+            Add new movie
+          </button>
         </div>
       </div>
-      <div class="three-col" id="movie-list"></div>
+      <div class="flex justify-between p" id="movie-list"></div>
+    </div>
+    <div
+      id="modalBackDrop"
+      class="modal-backdrop fixed inset-0 bg-black/50 flex items-center justify-center"
+    >
+      <div class="modal w-[auto] h-auto rounded border bg-white p-4 relative">
+        <button
+          id="closeModalWindow"
+          class="modal-close absolute top-0 right-2"
+        >
+          &times;
+        </button>
+        <div class="modal-body" id="modalBody">
+          <!-- <form id="modalForm">
+            <div>
+              <div>
+                <label for="name">Name</label>
+                <input type="text" placeholder="Enter name" />
+              </div>
+              <div>
+                <label for="Country">Country</label>
+                <input type="text" placeholder="Enter country" />
+              </div>
+              <div>
+                <label for="Year">Year</label>
+                <input type="text" placeholder="Enter year" />
+              </div>
+              <div>
+                <label for="Genre">Genre</label>
+                <input type="text" placeholder="Enter genre" />
+              </div>
+              <div>
+                <label for="Producer">Producer</label>
+                <input type="text" placeholder="Enter producer's name" />
+              </div>
+              <div>
+                <label for="Main Actor">Main Actor</label>
+                <input type="text" placeholder="Enter Main Actor's name" />
+              </div>
+              <div>
+                <label for="Description">Description</label>
+                <input type="text" placeholder="Enter Description" />
+              </div>
+
+              <button class="h-7 w-28" type="submit" id="submitBtn">
+                Submit
+              </button>
+            </div>
+          </form> -->
+        </div>
+      </div>
     </div>
   </body>
 </html>

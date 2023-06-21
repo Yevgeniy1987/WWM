@@ -10,13 +10,12 @@
   </head>
   <body>
     <div class="container mx-auto title-section">
-      <div class="wrapper">
+      <div class="">
         <h1 class="top">Will Watch Movie</h1>
-        <h1 class="bottom" aria-hidden="true">Will Watch Movie</h1>
       </div>
 
       <div class="top-bar">
-        <form id="searchForm">
+        <form id="search-form">
           <input type="search" name="searchQuery" />
           <button
             class="h-7 w-28 bg-gradient-to-r from-violet-500 to-fuchsia-500 border rounded"
@@ -39,27 +38,27 @@
             &#8230;
           </button>
           <button
-            id="addNewMovieBtn"
+            id="add-new-movie-btn"
             class="h-7 w-32 bg-gradient-to-r from-violet-500 to-fuchsia-500 border rounded"
           >
             Add new movie
           </button>
         </div>
       </div>
-      <div class="flex justify-between p" id="movie-list"></div>
+      <div class="flex justify-between p w-full flex-wrap" id="movie-list"></div>
     </div>
     <div
-      id="modalBackDrop"
+      id="modal-back-drop"
       class="modal-backdrop fixed inset-0 bg-black/50 flex items-center justify-center"
     >
       <div class="modal w-[auto] h-auto rounded border bg-white p-4 relative">
         <button
-          id="closeModalWindow"
+          id="close-modal-window"
           class="modal-close absolute top-0 right-2"
         >
           &times;
         </button>
-        <div class="modal-body" id="modalBody">
+        <div class="modal-body" id="modal-body">
           <!-- <form id="modalForm">
             <div>
               <div>

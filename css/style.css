@@ -241,46 +241,8 @@ table {
 
 /*=========COMMON STYLES START============*/
 body {
-    background: url(../img/4840806.jpg) no-repeat center / cover fixed;
+    background-color: rgb(13, 13, 39);
 }
-/*=========title code============*/
-* {
-  box-sizing: border-box;
-}
-:root {
- --text-color: hsl(0, 0%, 100%);
-}
-body {
-  margin: 0;
-}
-.wrapper {
-  display: grid;
-  place-content: center;
-  background-color: var(--background-color);
-  font-size: clamp(0.5rem, 0.5rem + 5vw, 5rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--text-color);
-}
-
-.wrapper > div {
-  grid-area: 1/1/-1/-1;
-}
-.top {
-  clip-path: polygon(0% 0%, 100% 0%, 100% 48%, 0% 58%);
-  margin-bottom: -12px;
-}
-.bottom {
-  margin-top: -45px;
-  clip-path: polygon(0% 60%, 100% 50%, 100% 100%, 0% 100%);
-  color: transparent;
-  background: -webkit-linear-gradient(177deg, black 53%, var(--text-color) 65%);
-  background: linear-gradient(177deg, black 53%, var(--text-color) 65%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  transform: translateX(-0.02em);
-}
-/*=========title code============*/
 
 .title-section {
   display: flex;

@@ -2,15 +2,15 @@
 console.log("Hello");
 const movieElem = document.getElementById("movie-list");
 
-const searchForm = document.getElementById("searchForm");
+const searchForm = document.getElementById("search-form");
 
-const addNewMovieBtn = document.getElementById("addNewMovieBtn");
+const addNewMovieBtn = document.getElementById("add-new-movie-btn");
 
-const closeModalWindow = document.getElementById("closeModalWindow");
+const closeModalWindow = document.getElementById("close-modal-window");
 
-const modalBackDrop = document.getElementById("modalBackDrop");
+const modalBackDrop = document.getElementById("modal-back-drop");
 
-const modalBody = document.getElementById("modalBody");
+const modalBody = document.getElementById("modal-body");
 console.log(modalBody);
 
 let MOVIES = [];
@@ -26,35 +26,35 @@ fetch(`${URL_BASE}/movies`)
   });
 
 addNewMovieBtn.addEventListener("click", () => {
-  const modalForm = `<form id="modalForm">
+  const modalForm = `<form data-action= "active" id="modalForm">
     <div class="flex-col justify-between">
       <div class="modal-window-form-field">
-        <label for="name">Name</label>
-        <input class="inputField" type="text" placeholder="Enter name" />
+        <label for="title">Name</label>
+        <input name="title" class="inputField" type="text" placeholder="Enter name" />
       </div>
       <div class="modal-window-form-field">
         <label for="country">Country</label>
-        <input class="inputField" type="text" placeholder="Enter country" />
+        <input name="country" class="inputField" type="text" placeholder="Enter country" />
       </div>
       <div class="modal-window-form-field">
         <label for="year">Year</label>
-        <input class="inputField" type="text" placeholder="Enter year" />
+        <input name="year" class="inputField" type="text" placeholder="Enter year" />
       </div>
       <div class="modal-window-form-field">
-        <label for="Genre">Genre</label>
-        <input class="inputField" type="text" placeholder="Enter genre" />
+        <label for="genre">Genre</label>
+        <input name="genre" class="inputField" type="text" placeholder="Enter genre" />
       </div>
       <div class="modal-window-form-field">
         <label for="producer">Producer</label>
-        <input class="inputField" type="text" placeholder="Enter producer's name" />
+        <input name="producer" class="inputField" type="text" placeholder="Enter producer's name" />
       </div>
       <div class="modal-window-form-field">
-        <label for="main-actor">Main Actor</label>
-        <input class="inputField" type="text" placeholder="Enter Main Actor's name" />
+        <label for="mainActor">Main Actor</label>
+        <input name="mainActor" class="inputField" type="text" placeholder="Enter Main Actor's name" />
       </div>
       <div class="modal-window-form-field">
-        <label for="Description">Description</label>
-        <input class="inputField" type="text-area" placeholder="Enter Description" />
+        <label for="description">Description</label>
+        <input name="description" class="inputField" type="text-area" placeholder="Enter Description" />
       </div>
 
       <button class="h-7 w-28 border bg-green-400 rounded" type="submit" id="submitBtn">
@@ -62,16 +62,16 @@ addNewMovieBtn.addEventListener("click", () => {
       </button>
     </div>
   </form>`;
-  renderModalBody(modalForm, modalBody);
-  
+  renderModalBody(modalForm, modalBody, true);
+
   openModal();
 
-  const createForm = getElementById("modalForm");
+  const createForm = document.getElementById("modalForm");
 
   createForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const form = event.target;
-    const name = form.name.value;
+    const title = form.title.value;
     const country = form.country.value;
     const year = form.year.value;
     const genre = form.genre.value;
@@ -80,15 +80,13 @@ addNewMovieBtn.addEventListener("click", () => {
     const description = form.description.value;
 
     const newMovie = {
-      content: {
-        name,
-        country,
-        year,
-        genre,
-        producer,
-        mainActor,
-        description,
-      },
+      title,
+      country,
+      year,
+      genre,
+      producer,
+      mainActor,
+      description,
       createdAt: new Date().toISOString(),
       updatedAt: null,
     };
@@ -101,10 +99,16 @@ addNewMovieBtn.addEventListener("click", () => {
       .then((res) => res.json())
       .then((data) => {
         MOVIES.push(data);
-        renderMovieList(movieElem, MOVIES);
+        renderMovieList(movieElem, MOVIES, true);
         form.reset();
       });
   });
+});
+
+modalForm.addEventListener("mouseover", (event) => {
+  if (event.target === modalForm) {
+
+  }
 });
 
 closeModalWindow.addEventListener("mousedown", (event) => {
@@ -116,7 +120,7 @@ closeModalWindow.addEventListener("mousedown", (event) => {
 function createMovieCard(card) {
   const {
     img,
-    name,
+    title,
     country,
     year,
     genre,
@@ -129,8 +133,8 @@ function createMovieCard(card) {
   } = card;
   return `<div class="border-black border border-solid rounded-lg p-2 bg-white movie-card w-1/3">
     <div class="movie-card-header">
-      <img class="" src="${img}" alt="Movie-icon" />
-      <h2 class="">Movie: ${name}</h2>
+      <img class="w-full" src="${img}" alt="Movie-icon" />
+      <h2 class="text-xl not-italic hover:italic">${title}</h2>
     </div>
     <div class="movie-card-main">
       <p>Country: ${country}</p>

@@ -4,9 +4,9 @@ const movieElem = document.getElementById("movie-list");
 
 const searchForm = document.getElementById("searchForm");
 
-const AddNewMovieBtn = document.getElementById("addNewMovieBtn");
+const addNewMovieBtn = document.getElementById("addNewMovieBtn");
 
-const CloseModalWindow = document.getElementById("closeModalWindow");
+const closeModalWindow = document.getElementById("closeModalWindow");
 
 const modalBackDrop = document.getElementById("modalBackDrop");
 
@@ -25,7 +25,7 @@ fetch(`${URL_BASE}/movies`)
     console.log(MOVIES);
   });
 
-AddNewMovieBtn.addEventListener("click", () => {
+addNewMovieBtn.addEventListener("click", () => {
   const modalForm = `<form id="modalForm">
     <div class="flex-col justify-between">
       <div class="modal-window-form-field">
@@ -107,8 +107,8 @@ AddNewMovieBtn.addEventListener("click", () => {
   });
 });
 
-CloseModalWindow.addEventListener("mousedown", (event) => {
-  if (event.target === modalBackDrop || CloseModalWindow) {
+closeModalWindow.addEventListener("mousedown", (event) => {
+  if (event.target === modalBackDrop || closeModalWindow) {
     closeModal();
   }
 });
@@ -125,7 +125,7 @@ function createMovieCard(card) {
     description,
     rate,
     createdAt,
-    upDatedAt,
+    updatedAt,
   } = card;
   return `<div class="border-black border border-solid rounded-lg p-2 bg-white movie-card w-1/3">
     <div class="movie-card-header">
@@ -143,7 +143,7 @@ function createMovieCard(card) {
     <div class="movie-card-footer">
       <p>Rate: ${rate}</p> 
       <p>Created: ${createdAt}</p>
-      <p>Updated: ${upDatedAt}</p>
+      <p>Updated: ${updatedAt}</p>
     </div>
   </div>`;
 }

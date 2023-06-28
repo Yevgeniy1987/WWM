@@ -9,6 +9,8 @@ const modalBackDrop = document.getElementById("modal-back-drop");
 const modalBody = document.getElementById("modal-body");
 console.log(modalBody);
 
+const tileActions = document.getElementById("tile-action");
+
 let MOVIES = [];
 
 const URL_BASE = `http://localhost:3333`;
@@ -21,13 +23,39 @@ fetch(`${URL_BASE}/movies`)
     console.log(MOVIES);
   });
 
+searchForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const searchQueryString = e.target.searchQuery.value
+    .trim()
+    .replaceAll(/\s{2,}/g, " ")
+    .toLowerCase();
+
+  fetch(`${URL_BASE}/movies?q=${searchQueryString}`)
+    .then((res) => res.json())
+    .then((data) => {
+      MOVIES = data;
+      renderMovieList(movieList, MOVIES, true);
+    });
+});
+
+// tileActions.addEventListener("click", (e) => {
+//       const updateBtn = event.target;
+//     const updatingMovieId = Number(updateBtn.dataset.id);
+//   const actionBtn = e.target;
+//   const currentActionBtn = actionBtn.dataset.id;
+//   if (currentActionBtn) {
+//     ;
+// }
+// });
+
 addNewMovieBtn.addEventListener("click", showNewMovieModal);
 
 movieList.addEventListener("click", (event) => {
   if (event.target.classList.contains("btn")) {
     const updateBtn = event.target;
     const updatingMovieId = Number(updateBtn.dataset.id);
-    showUpdatedMovieModal(updatingMovieId);
+    const updatingMovie = MOVIES.find((movie) => movie.id === updatingMovieId);
+    showUpdatedMovieModal(updatingMovie);
   }
 });
 
@@ -88,36 +116,38 @@ function showNewMovieModal() {
 
   openModal();
 }
-function showUpdatedMovieModal(updatingMovieId) {
-  const modalForm = `<form data-action="updateMovie" data-updatingMovieId="${updatingMovieId}" id="modalForm">
+function showUpdatedMovieModal(updatingMovie) {
+  const { id, title, country, year, genre, producer, mainActor, description } =
+    updatingMovie;
+  const modalForm = `<form data-action="updateMovie" data-updatingMovieId="${id}" id="modalForm">
       <div class="flex-col justify-between">
         <div class="modal-window-form-field">
           <label for="title">Name</label>
-          <input name="title" id="title" class="inputField" type="text" placeholder="Enter name" />
+          <input name="title" value="${title}" class="inputField" type="text" placeholder="Enter name" />
         </div>
         <div class="modal-window-form-field">
           <label for="country">Country</label>
-          <input name="country" id="country" class="inputField" type="text" placeholder="Enter country" />
+          <input name="country" value="${country}" class="inputField" type="text" placeholder="Enter country" />
         </div>
         <div class="modal-window-form-field">
           <label for="year">Year</label>
-          <input name="year" id="year" class="inputField" type="text" placeholder="Enter year" />
+          <input name="year" value="${year}" class="inputField" type="text" placeholder="Enter year" />
         </div>
         <div class="modal-window-form-field">
           <label for="genre">Genre</label>
-          <input name="genre" id="genre" class="inputField" type="text" placeholder="Enter genre" />
+          <input name="genre" value="${genre}" class="inputField" type="text" placeholder="Enter genre" />
         </div>
         <div class="modal-window-form-field">
           <label for="producer">Producer</label>
-          <input name="producer" id="producer" class="inputField" type="text" placeholder="Enter producer's name" />
+          <input name="producer" value="${producer}" class="inputField" type="text" placeholder="Enter producer's name" />
         </div>
         <div class="modal-window-form-field">
           <label for="mainActor">Main Actor</label>
-          <input name="mainActor" id="mainActor" class="inputField" type="text" placeholder="Enter Main Actor's name" />
+          <input name="mainActor" value="${mainActor}" class="inputField" type="text" placeholder="Enter Main Actor's name" />
         </div>
         <div class="modal-window-form-field">
           <label for="description">Description</label>
-          <input name="description" id="description" class="inputField" type="text-area" placeholder="Enter Description" />
+          <input name="description" value="${description}" class="inputField" type="text-area" placeholder="Enter Description" />
         </div>
   
         <div>
@@ -225,7 +255,7 @@ function createMovieCard(card) {
     updatedAt,
     id,
   } = card;
-  return `<div class="border-black border border-solid rounded-lg p-2 bg-white movie-card w-1/3">
+  return `<div class="border-black border border-solid rounded-lg p-2 bg-white movie-card w-1/3 one-col">
     <div class="movie-card-header">
       <img class="w-full" src="${img}" alt="Movie-icon" />
       <h2 class="text-xl not-italic hover:italic">${title}</h2>

@@ -280,3 +280,7 @@ body.modal-open>.modal-backdrop{
   border-radius: 5px;
   padding: 2px;
 }
+.movie-list.one-col {
+display: flex;
+flex-direction: column;
+}

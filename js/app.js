@@ -8,8 +8,10 @@ const closeModalWindow = document.getElementById("close-modal-window");
 const modalBackDrop = document.getElementById("modal-back-drop");
 const modalBody = document.getElementById("modal-body");
 console.log(modalBody);
+
 const sortSelection = document.getElementById("sort-select");
-const wrapperActionBtn = document.getElementById("wrapper-action-btn");
+const wrapperActions = document.getElementById("wrapper-action-btn");
+const actionButtons = wrapperActions.children;
 
 let MOVIES = [];
 
@@ -48,15 +50,27 @@ searchForm.addEventListener("submit", (e) => {
     });
 });
 
-// tileActions.addEventListener("click", (e) => {
-//       const updateBtn = event.target;
-//     const updatingMovieId = Number(updateBtn.dataset.id);
-//   const actionBtn = e.target;
-//   const currentActionBtn = actionBtn.dataset.id;
-//   if (currentActionBtn) {
-//     ;
-// }
-// });
+const movieCards = movieList.children;
+
+console.log(movieCards);
+
+wrapperActions.addEventListener("click", (e) => {
+  const currentBtn = e.target;
+  const actionBtn = currentBtn.dataset.action;
+
+  if (actionBtn === "one-clm") {
+    movieCards.classList.add("one-clm");
+    movieCards.classList.remove("three-clm");
+  }
+  if (actionBtn === "three-clm") {
+    movieCards.classList.add("three-clm");
+    movieCards.classList.remove("one-clm");
+  }
+
+  //   currentActionBtn.classList.add ("is-active");
+  // } else {
+  //   currentActionBtn.classList.remove("is-active");
+});
 
 addNewMovieBtn.addEventListener("click", showNewMovieModal);
 

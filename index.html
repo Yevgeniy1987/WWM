@@ -24,7 +24,15 @@
             Search
           </button>
         </form>
-        <div class="tile-actions" id="tile-actions">
+        <select name="OrderBy" id="sort-select">
+          <option value="title/asc" selected>Title A-Z</option>
+          <option value="title/desc">Title Z-A</option>
+          <option value="genre/asc">Genre A-Z</option>
+          <option value="genre/desc">Genre Z-A</option>
+          <option value="country/asc">Country A-Z</option>
+          <option value="country/desc">Country Z-A</option>
+        </select>
+        <div class="wrapper-action-btn" id="wrapper-action-btn">
           <button
             class="h-7 w-5 border bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded"
             data-action="one-col"

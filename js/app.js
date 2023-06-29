@@ -8,20 +8,30 @@ const closeModalWindow = document.getElementById("close-modal-window");
 const modalBackDrop = document.getElementById("modal-back-drop");
 const modalBody = document.getElementById("modal-body");
 console.log(modalBody);
-
-const tileActions = document.getElementById("tile-action");
+const sortSelection = document.getElementById("sort-select");
+const wrapperActionBtn = document.getElementById("wrapper-action-btn");
 
 let MOVIES = [];
 
 const URL_BASE = `http://localhost:3333`;
 
-fetch(`${URL_BASE}/movies`)
+fetch(`${URL_BASE}/movies?_sort=name&_order=asc`)
   .then((res) => res.json())
   .then((data) => {
     MOVIES = data;
     renderMovieList(movieList, MOVIES, true);
-    console.log(MOVIES);
   });
+
+sortSelection.addEventListener("change", (event) => {
+  const [key, order] = event.target.value.split("/");
+
+  fetch(`${URL_BASE}/movies?_sort=${key}&_order=${order}`)
+    .then((res) => res.json())
+    .then((data) => {
+      MOVIES = data;
+      renderMovieList(movieList, MOVIES, true);
+    });
+});
 
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -76,7 +86,7 @@ function showNewMovieModal() {
   const modalForm = `<form data-action="create" id="modalForm">
       <div class="flex-col justify-between">
         <div class="modal-window-form-field">
-          <label for="title">Name</label>
+          <label for="title">Title</label>
           <input name="title" class="inputField" type="text" placeholder="Enter name" />
         </div>
         <div class="modal-window-form-field">
@@ -122,7 +132,7 @@ function showUpdatedMovieModal(updatingMovie) {
   const modalForm = `<form data-action="updateMovie" data-updatingMovieId="${id}" id="modalForm">
       <div class="flex-col justify-between">
         <div class="modal-window-form-field">
-          <label for="title">Name</label>
+          <label for="title">Title</label>
           <input name="title" value="${title}" class="inputField" type="text" placeholder="Enter name" />
         </div>
         <div class="modal-window-form-field">

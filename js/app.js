@@ -3,6 +3,7 @@ console.log("Hello");
 const movieList = document.getElementById("movie-list");
 const searchForm = document.getElementById("search-form");
 const addNewMovieBtn = document.getElementById("add-new-movie-btn");
+const searchField = document.getElementById("searchField")
 
 const closeModalWindow = document.getElementById("close-modal-window");
 const modalBackDrop = document.getElementById("modal-back-drop");
@@ -274,24 +275,24 @@ function createMovieCard(card) {
     updatedAt,
     id,
   } = card;
-  return `<div class="border-black border border-solid rounded-lg p-2 movie-card  w-[31%] one-col bg-transparent text-gray-400">
+  return `<div class="border-black border border-solid rounded-lg p-2 movie-card  w-[31%] one-col bg-transparent text-gray-400 compact-card">
     <div class="movie-card-header">
-      <img class="w-full" src="${img}" alt="Movie-icon" />
-      <h2 class="text-xl not-italic">${title}</h2>
+      <img class="w-full h-auto" src="${img}" alt="Movie-icon"/>
     </div>
     <div class="movie-card-main">
-      <p>Country: ${country}</p>
-      <p>Year: ${year}</p>
-      <p>Genre: ${genre}</p>
-      <p>Producer: ${producer}</p>
-      <p>Main actor: ${mainActor}</p>
-      <p>Description: ${description}</p>
+      <h2 class="text-xl not-italic">${title}</h2>
+      <p><span>Country</span>: ${country}</p>
+      <p><span>Year</span>: ${year}</p>
+      <p><span>Genre</span>: ${genre}</p>
+      <p><span>Producer</span>: ${producer}</p>
+      <p><span>Main actor</span>: ${mainActor}</p>
+      <p><span>Description</span>: ${description}</p>
     </div>
      <div class="movie-card-footer">
   <div class="">
-    <p>Rate: ${rate}</p>
-    <p>Created: ${createdAt}</p>
-    <p>Updated: ${updatedAt}</p>
+    <p><span>Rate</span>: ${rate}</p>
+    <p><span>Created</span>: ${createdAt}</p>
+    <p><span>Updated</span>: ${updatedAt}</p>
   </div>
   <button data-id = "${id}" data-action = "update" class="btn h-7 w-7  bg-transparent rounded" type="submit">&#9998;</button>
 

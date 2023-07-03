@@ -10,21 +10,21 @@
   </head>
   <body>
     <div class="container mx-auto title-section">
-      <div class="">
-        <h1 class="top">Will Watch Movie</h1>
+      <div class="title-line">
+        <h1 class="top text-gray-500">Will Watch Movie</h1>
       </div>
 
       <div class="top-bar">
-        <form id="search-form">
+        <form id="search-form" class="rounded">
           <input type="search" name="searchQuery" />
           <button
-            class="h-7 w-28 bg-gradient-to-r from-violet-500 to-fuchsia-500 border rounded"
+            class="h-7 w-28 bg-indigo-950 border rounded text-white hover:text-black hover:bg-white"
             type="submit"
           >
             Search
           </button>
         </form>
-        <select name="OrderBy" id="sort-select">
+        <select id="sort-select" class="rounded">
           <option value="title/asc" selected>Title A-Z</option>
           <option value="title/desc">Title Z-A</option>
           <option value="genre/asc">Genre A-Z</option>
@@ -34,27 +34,27 @@
         </select>
         <div class="wrapper-action-btn" id="wrapper-action-btn">
           <button
-            class="h-7 w-5 border bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded"
+            class="h-7 w-6 bg-indigo-950 border rounded text-white hover:text-black hover:bg-white"
             data-action="one-col"
           >
             &#8801;
           </button>
           <button
-            class="action-btn h-7 w-5 border is-active bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded"
+            class="action-btn h-7 w-6 border is-active bg-indigo-950 rounded text-white hover:text-black hover:bg-white"
             data-action="three-col"
           >
             &#8230;
           </button>
           <button
             id="add-new-movie-btn"
-            class="action-btn after:h-7 w-32 bg-gradient-to-r from-violet-500 to-fuchsia-500 border rounded"
+            class="action-btn h-7 w-32 bg-indigo-950 border rounded text-white hover:text-black hover:bg-white"
           >
             Add new movie
           </button>
         </div>
       </div>
       <div
-        class="movie-list flex justify-between p w-full flex-wrap"
+        class="movie-list flex gap-0.5 justify-between p w-full flex-wrap"
         id="movie-list"
       ></div>
     </div>
@@ -130,4 +130,3 @@
     <p>${card.upDatedAt}</p>
   </div>
 </div> -->
-

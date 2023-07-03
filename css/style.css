@@ -241,7 +241,7 @@ table {
 
 /*=========COMMON STYLES START============*/
 body {
-    background-color: rgb(13, 13, 39);
+  background-color: rgb(13, 13, 39);
 }
 
 .title-section {
@@ -250,27 +250,31 @@ body {
   gap: 50px;
 }
 
-
-.main-title {
-  font-size: 40px;
+.title-line {
   text-align: center;
-  margin-top: 30px;
-  color: #c1bcbc;
-  text-shadow: 0 1px 0 #605555, 0 2px 0 #847f7f, 
-  0 3 3px 0 #737070, 0 4px 0 #6b6868, ;
+  font-size: 75px;
 }
+h1 {
+  font-family: "Paytone One";
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  display: block;
+  margin: 15px 0 17px 0;
+  text-shadow: 0 13.36px 8.896px #454340, 0 -2px 1px #fff;
+}
+
 .top-bar {
   display: flex;
   justify-content: space-between;
   padding: 10px 10px;
 }
-body.modal-open>.modal-backdrop{
+body.modal-open > .modal-backdrop {
   visibility: visible;
 }
 .modal-backdrop {
   visibility: hidden;
 }
-.modal-window-form-field{
+.modal-window-form-field {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -281,6 +285,10 @@ body.modal-open>.modal-backdrop{
   padding: 2px;
 }
 .movie-list.one-col {
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
+}
+.movie-card-features {
+  background-color: transparent;
+  color: white;
 }

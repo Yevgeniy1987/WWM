@@ -9,22 +9,21 @@ const modalBackDrop = document.getElementById("modal-back-drop");
 const modalBody = document.getElementById("modal-body");
 console.log(modalBody);
 
-const sortSelection = document.getElementById("sort-select");
+const sortSelect = document.getElementById("sort-select");
 const wrapperActions = document.getElementById("wrapper-action-btn");
-const actionButtons = wrapperActions.children;
 
 let MOVIES = [];
 
 const URL_BASE = `http://localhost:3333`;
 
-fetch(`${URL_BASE}/movies?_sort=name&_order=asc`)
+fetch(`${URL_BASE}/movies?_sort=title&_order=asc`)
   .then((res) => res.json())
   .then((data) => {
     MOVIES = data;
     renderMovieList(movieList, MOVIES, true);
   });
 
-sortSelection.addEventListener("change", (event) => {
+sortSelect.addEventListener("change", (event) => {
   const [key, order] = event.target.value.split("/");
 
   fetch(`${URL_BASE}/movies?_sort=${key}&_order=${order}`)
@@ -50,21 +49,17 @@ searchForm.addEventListener("submit", (e) => {
     });
 });
 
-const movieCards = movieList.children;
-
-console.log(movieCards);
-
 wrapperActions.addEventListener("click", (e) => {
   const currentBtn = e.target;
   const actionBtn = currentBtn.dataset.action;
 
-  if (actionBtn === "one-clm") {
-    movieCards.classList.add("one-clm");
-    movieCards.classList.remove("three-clm");
+  if (actionBtn === "one-col") {
+    movieList.classList.add("one-col");
+    movieList.classList.remove("three-col");
   }
-  if (actionBtn === "three-clm") {
-    movieCards.classList.add("three-clm");
-    movieCards.classList.remove("one-clm");
+  if (actionBtn === "three-col") {
+    movieList.classList.add("three-col");
+    movieList.classList.remove("one-col");
   }
 
   //   currentActionBtn.classList.add ("is-active");
@@ -125,7 +120,7 @@ function showNewMovieModal() {
         </div>
         <div class="modal-window-form-field">
           <label for="description">Description</label>
-          <input name="description" class="inputField" type="text-area" placeholder="Enter Description" />
+          <textarea name="description" class="inputField" type="text" placeholder="Enter Description" ></textarea>
         </div>
         <div>
         <button class="h-7 w-28 border bg-green-400 rounded" type="submit" id="submitBtn">
@@ -171,7 +166,7 @@ function showUpdatedMovieModal(updatingMovie) {
         </div>
         <div class="modal-window-form-field">
           <label for="description">Description</label>
-          <input name="description" value="${description}" class="inputField" type="text-area" placeholder="Enter Description" />
+          <textarea name="description" value="${description}" class="inputField" type="text" placeholder="Enter Description"></textarea>
         </div>
   
         <div>
@@ -279,10 +274,10 @@ function createMovieCard(card) {
     updatedAt,
     id,
   } = card;
-  return `<div class="border-black border border-solid rounded-lg p-2 bg-white movie-card w-1/3 one-col">
+  return `<div class="border-black border border-solid rounded-lg p-2 movie-card  w-[31%] one-col bg-transparent text-gray-400">
     <div class="movie-card-header">
       <img class="w-full" src="${img}" alt="Movie-icon" />
-      <h2 class="text-xl not-italic hover:italic">${title}</h2>
+      <h2 class="text-xl not-italic">${title}</h2>
     </div>
     <div class="movie-card-main">
       <p>Country: ${country}</p>
@@ -298,7 +293,7 @@ function createMovieCard(card) {
     <p>Created: ${createdAt}</p>
     <p>Updated: ${updatedAt}</p>
   </div>
-  <button data-id = "${id}" data-action = "update" class="btn h-7 w-7 border bg-yellow-400 rounded" type="submit">&#9998;</button>
+  <button data-id = "${id}" data-action = "update" class="btn h-7 w-7  bg-transparent rounded" type="submit">&#9998;</button>
 
   </div>
   </div>`;

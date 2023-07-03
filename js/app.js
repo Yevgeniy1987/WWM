@@ -8,15 +8,18 @@ const closeModalWindow = document.getElementById("close-modal-window");
 const modalBackDrop = document.getElementById("modal-back-drop");
 const modalBody = document.getElementById("modal-body");
 console.log(modalBody);
+
 const searchField = document.getElementById("searchField");
-restoredSavedSearchValue()
+restoredSavedSearchValue();
+
+window.addEventListener("beforeunload", () => {
+  window.localStorage.setItem("search", searchField.value);
+});
 
 const sortSelect = document.getElementById("sort-select");
 const wrapperActions = document.getElementById("wrapper-action-btn");
 
-searchField.addEventListener("input", (event) => {
-  window.localStorage.setItem("search", event.target.value);
-});
+
 
 let MOVIES = [];
 

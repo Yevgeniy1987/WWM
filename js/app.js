@@ -3,15 +3,20 @@ console.log("Hello");
 const movieList = document.getElementById("movie-list");
 const searchForm = document.getElementById("search-form");
 const addNewMovieBtn = document.getElementById("add-new-movie-btn");
-const searchField = document.getElementById("searchField")
 
 const closeModalWindow = document.getElementById("close-modal-window");
 const modalBackDrop = document.getElementById("modal-back-drop");
 const modalBody = document.getElementById("modal-body");
 console.log(modalBody);
+const searchField = document.getElementById("searchField");
+restoredSavedSearchValue()
 
 const sortSelect = document.getElementById("sort-select");
 const wrapperActions = document.getElementById("wrapper-action-btn");
+
+searchField.addEventListener("input", (event) => {
+  window.localStorage.setItem("search", event.target.value);
+});
 
 let MOVIES = [];
 
@@ -320,4 +325,12 @@ function closeModal() {
 
 function renderModalBody(content, to) {
   to.innerHTML = content;
+}
+
+function restoredSavedSearchValue() {
+  const savedSearchValue = window.localStorage.getItem("search");
+
+  if (savedSearchValue) {
+    searchField.value = savedSearchValue;
+  }
 }

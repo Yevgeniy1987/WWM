@@ -9,17 +9,10 @@ const modalBackDrop = document.getElementById("modal-back-drop");
 const modalBody = document.getElementById("modal-body");
 console.log(modalBody);
 
-const searchField = document.getElementById("searchField");
-restoredSavedSearchValue();
-
-window.addEventListener("beforeunload", () => {
-  window.localStorage.setItem("search", searchField.value);
-});
+window.localStorage.setItem("addMovieForm", saveAddMovieFormValues);
 
 const sortSelect = document.getElementById("sort-select");
 const wrapperActions = document.getElementById("wrapper-action-btn");
-
-
 
 let MOVIES = [];
 
@@ -101,7 +94,7 @@ modalBody.addEventListener("submit", (event) => {
 });
 
 function showNewMovieModal() {
-  const modalForm = `<form data-action="create" id="modalForm">
+  const modalForm = `<form data-action="create" id="addMovieForm">
       <div class="flex-col justify-between">
         <div class="modal-window-form-field">
           <label for="title">Title</label>
@@ -141,7 +134,7 @@ function showNewMovieModal() {
       </div>
     </form>`;
   renderModalBody(modalForm, modalBody, true);
-
+  restoreAddMovieFormValue();
   openModal();
 }
 function showUpdatedMovieModal(updatingMovie) {
@@ -330,10 +323,40 @@ function renderModalBody(content, to) {
   to.innerHTML = content;
 }
 
-function restoredSavedSearchValue() {
-  const savedSearchValue = window.localStorage.getItem("search");
-
-  if (savedSearchValue) {
-    searchField.value = savedSearchValue;
+function restoreAddMovieFormValue() {
+  const addMovieFormValue = JSON.parse(
+    window.localStorage.getItem("addMovieForm")
+  );
+  if (addMovieFormValue) {
+    const form = document.getElementById("addMovieForm");
+    form.title.value = addMovieFormValue.title;
+    form.country.value = addMovieFormValue.country;
+    form.year.value = addMovieFormValue.year;
+    form.genre.value = addMovieFormValue.genre;
+    form.producer.value = addMovieFormValue.producer;
+    form.mainActor.value = addMovieFormValue.mainActor;
+    form.description.value = addMovieFormValue.description;
   }
+}
+function saveAddMovieFormValues() {
+  const form = document.getElementById("addMovieForm");
+  const title = form.title.value;
+  const country = form.country.value;
+  const year = form.year.value;
+  const genre = form.genre.value;
+  const producer = form.producer.value;
+  const mainActor = form.mainActor.value;
+  const description = form.description.value;
+
+  const addFormValues = {
+    title,
+    country,
+    year,
+    genre,
+    producer,
+    mainActor,
+    description,
+  };
+
+  window.localStorage.setItem("addMovieForm", JSON.stringify(addFormValues));
 }

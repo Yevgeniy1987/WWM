@@ -10,21 +10,26 @@
   </head>
   <body>
     <div class="container mx-auto title-section">
-      <div class="title-line">
+      <a href="#" class="title-line">
         <h1 class="top text-gray-500">Will Watch Movie</h1>
-      </div>
+      </a>
 
       <div class="top-bar">
         <form id="search-form" class="rounded">
-          <input type="search" name="searchQuery" id="searchField" />
+          <input
+            type="search"
+            name="searchQuery"
+            id="searchField"
+            class="h-10 bg-gray-400 rounded p-1 border-white border"
+          />
           <button
-            class="h-7 w-28 bg-indigo-950 border rounded text-white hover:text-black hover:bg-white"
+            class="h-10 w-28 bg-indigo-950 border rounded text-white hover:text-black hover:bg-white"
             type="submit"
           >
             Search
           </button>
         </form>
-        <select id="sort-select" class="rounded">
+        <select id="sort-select" class="border border-white rounded  bg-gray-400">
           <option value="title/asc" selected>Title A-Z</option>
           <option value="title/desc">Title Z-A</option>
           <option value="genre/asc">Genre A-Z</option>
@@ -34,20 +39,20 @@
         </select>
         <div class="wrapper-action-btn" id="wrapper-action-btn">
           <button
-            class="h-7 w-6 bg-indigo-950 border rounded text-white hover:text-black hover:bg-white"
+            class="h-10 w-8 bg-indigo-950 border rounded text-white hover:text-black hover:bg-white"
             data-action="one-col"
           >
             &#8801;
           </button>
           <button
-            class="action-btn h-7 w-6 border is-active bg-indigo-950 rounded text-white hover:text-black hover:bg-white"
+            class="action-btn h-10 w-8 border is-active bg-indigo-950 rounded text-white hover:text-black hover:bg-white"
             data-action="three-col"
           >
             &#8230;
           </button>
           <button
             id="add-new-movie-btn"
-            class="action-btn h-7 w-32 bg-indigo-950 border rounded text-white hover:text-black hover:bg-white"
+            class="action-btn h-10 w-32 bg-indigo-950 border rounded text-white hover:text-black hover:bg-white"
           >
             Add new movie
           </button>
@@ -62,7 +67,7 @@
       id="modal-back-drop"
       class="modal-backdrop fixed inset-0 bg-black/50 flex items-center justify-center"
     >
-      <div class="modal w-[auto] h-auto rounded border bg-white p-4 relative">
+      <div class="modal rounded border bg-slate-400 p-4 relative">
         <button
           id="close-modal-window"
           class="modal-close absolute top-0 right-2"
@@ -130,4 +135,3 @@
     <p>${card.upDatedAt}</p>
   </div>
 </div> -->
-<span></span>

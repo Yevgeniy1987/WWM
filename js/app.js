@@ -9,7 +9,7 @@ const modalBackDrop = document.getElementById("modal-back-drop");
 const modalBody = document.getElementById("modal-body");
 console.log(modalBody);
 
-window.localStorage.setItem("addMovieForm", saveAddMovieFormValues);
+window.addEventListener("beforeunload", saveAddMovieFormValues);
 
 const sortSelect = document.getElementById("sort-select");
 const wrapperActions = document.getElementById("wrapper-action-btn");
@@ -95,40 +95,44 @@ modalBody.addEventListener("submit", (event) => {
 
 function showNewMovieModal() {
   const modalForm = `<form data-action="create" id="addMovieForm">
-      <div class="flex-col justify-between">
+      <div class="flex-col justify-between w-[300px] h-[550px] text-white">
+         <div class="modal-window-form-field">
+           <label class="text-white italic font-bold text-xl" for="imgLink">Movie image</label>
+           <input name="imgLink" class="inputField" type="text" placeholder="Paste movie image Link" />
+        </div>
         <div class="modal-window-form-field">
-          <label for="title">Title</label>
+          <label class="text-white italic font-bold text-xl" for="title">Title</label>
           <input name="title" class="inputField" type="text" placeholder="Enter name" />
         </div>
         <div class="modal-window-form-field">
-          <label for="country">Country</label>
+          <label class="text-white italic font-bold text-xl" for="country">Country</label>
           <input name="country" class="inputField" type="text" placeholder="Enter country" />
         </div>
         <div class="modal-window-form-field">
-          <label for="year">Year</label>
+          <label class="text-white italic font-bold text-xl" for="year">Year</label>
           <input name="year" class="inputField" type="text" placeholder="Enter year" />
         </div>
         <div class="modal-window-form-field">
-          <label for="genre">Genre</label>
+          <label class="text-white italic font-bold text-xl" for="genre">Genre</label>
           <input name="genre" class="inputField" type="text" placeholder="Enter genre" />
         </div>
         <div class="modal-window-form-field">
-          <label for="producer">Producer</label>
+          <label class="text-white italic font-bold text-xl" for="producer">Producer</label>
           <input name="producer" class="inputField" type="text" placeholder="Enter producer's name" />
         </div>
         <div class="modal-window-form-field">
-          <label for="mainActor">Main Actor</label>
+          <label class="text-white italic font-bold text-xl" for="mainActor">Main Actor</label>
           <input name="mainActor" class="inputField" type="text" placeholder="Enter Main Actor's name" />
         </div>
         <div class="modal-window-form-field">
-          <label for="description">Description</label>
+          <label class="text-white italic font-bold text-xl" for="description">Description</label>
           <textarea name="description" class="inputField" type="text" placeholder="Enter Description" ></textarea>
         </div>
-        <div>
-        <button class="h-7 w-28 border bg-green-400 rounded" type="submit" id="submitBtn">
+        <div class="flex my-5">
+        <button class="h-7 w-1/2  border bg-green-400 rounded" type="submit" id="submitBtn">
           Submit
         </button>
-        <button class="h-7 w-28 border bg-red-400 rounded" type="reset" id="resetBtn">Clear</button>
+        <button class="h-7 w-1/2 border bg-red-400 rounded" type="reset" id="resetBtn">Clear</button>
       </div>
         
       </div>
@@ -138,44 +142,57 @@ function showNewMovieModal() {
   openModal();
 }
 function showUpdatedMovieModal(updatingMovie) {
-  const { id, title, country, year, genre, producer, mainActor, description } =
-    updatingMovie;
+  const {
+    id,
+    title,
+    country,
+    year,
+    genre,
+    producer,
+    mainActor,
+    description,
+    imgLink,
+  } = updatingMovie;
   const modalForm = `<form data-action="updateMovie" data-updatingMovieId="${id}" id="modalForm">
-      <div class="flex-col justify-between">
+      <div class="flex-col w-[300px] h-[550px]">
+         <div class="modal-window-form-field">
+           <label class="text-white italic font-bold text-xl " for="imgLink">Movie image</label>
+           <input name="imgLink" value="${imgLink}" class="inputField" type="text" placeholder="Paste movie image Link" />
+        </div>
         <div class="modal-window-form-field">
-          <label for="title">Title</label>
+          <label class="text-white italic font-bold text-xl" for="title">Title</label>
           <input name="title" value="${title}" class="inputField" type="text" placeholder="Enter name" />
         </div>
         <div class="modal-window-form-field">
-          <label for="country">Country</label>
+          <label class="text-white italic font-bold text-xl" for="country">Country</label>
           <input name="country" value="${country}" class="inputField" type="text" placeholder="Enter country" />
         </div>
         <div class="modal-window-form-field">
-          <label for="year">Year</label>
+          <label class="text-white italic font-bold text-xl" for="year">Year</label>
           <input name="year" value="${year}" class="inputField" type="text" placeholder="Enter year" />
         </div>
         <div class="modal-window-form-field">
-          <label for="genre">Genre</label>
+          <label class="text-white italic font-bold text-xl" for="genre">Genre</label>
           <input name="genre" value="${genre}" class="inputField" type="text" placeholder="Enter genre" />
         </div>
         <div class="modal-window-form-field">
-          <label for="producer">Producer</label>
+          <label class="text-white italic font-bold text-xl" for="producer">Producer</label>
           <input name="producer" value="${producer}" class="inputField" type="text" placeholder="Enter producer's name" />
         </div>
         <div class="modal-window-form-field">
-          <label for="mainActor">Main Actor</label>
+          <label class="text-white italic font-bold text-xl" for="mainActor">Main Actor</label>
           <input name="mainActor" value="${mainActor}" class="inputField" type="text" placeholder="Enter Main Actor's name" />
         </div>
         <div class="modal-window-form-field">
-          <label for="description">Description</label>
+          <label class="text-white italic font-bold text-xl" for="description">Description</label>
           <textarea name="description" value="${description}" class="inputField" type="text" placeholder="Enter Description"></textarea>
         </div>
   
-        <div>
-         <button class="h-7 w-28 border bg-yellow-400 rounded" type="submit">
+        <div class="flex my-5">
+         <button class="h-7 w-1/2 border bg-yellow-400 rounded" type="submit">
        Update
         </button>
-        <button class="h-7 w-28 border bg-red-400 rounded" type="reset" >Clear</button>
+        <button class="h-7 w-1/2 border bg-red-400 rounded" type="reset" >Clear</button>
       </div>
 
       </div>
@@ -186,6 +203,7 @@ function showUpdatedMovieModal(updatingMovie) {
 }
 
 function addMovie(form) {
+  const img = form.title.value;
   const title = form.title.value;
   console.log(title);
   const country = form.country.value;
@@ -196,6 +214,7 @@ function addMovie(form) {
   const description = form.description.value;
 
   const newMovie = {
+    img,
     title,
     country,
     year,
@@ -203,7 +222,7 @@ function addMovie(form) {
     producer,
     mainActor,
     description,
-    createdAt: new Date().toISOString(),
+    createdAt: new Date().toString().toLocaleString(),
     updatedAt: null,
   };
 
@@ -220,6 +239,7 @@ function addMovie(form) {
     });
 }
 function updateMovie(form, updatingMovieId) {
+  const img = form.title.value;
   const title = form.title.value;
   const country = form.country.value;
   const year = form.year.value;
@@ -228,6 +248,7 @@ function updateMovie(form, updatingMovieId) {
   const mainActor = form.mainActor.value;
   const description = form.description.value;
   const updatedMovieCard = {
+    img,
     title,
     country,
     year,
@@ -235,7 +256,7 @@ function updateMovie(form, updatingMovieId) {
     producer,
     mainActor,
     description,
-    updatedAt: new Date().toISOString(),
+    updatedAt: new Date().toString().toLocaleString(),
   };
 
   const updatingMovingIdx = MOVIES.findIndex(
@@ -276,28 +297,52 @@ function createMovieCard(card) {
     updatedAt,
     id,
   } = card;
-  return `<div class="border-black border border-solid rounded-lg p-2 movie-card  w-[31%] one-col bg-transparent text-gray-400 compact-card">
+  return `<div class="border-gray-400 border border-solid rounded-lg p-2 movie-card relative w-[45%] one-col bg-transparent text-gray-400 compact-card">
     <div class="movie-card-header">
-      <img class="w-full h-auto" src="${img}" alt="Movie-icon"/>
+      <img class="img-feature" src="${img}" alt="Movie-icon"/>
     </div>
     <div class="movie-card-main">
-      <h2 class="text-xl not-italic">${title}</h2>
-      <p><span>Country</span>: ${country}</p>
-      <p><span>Year</span>: ${year}</p>
-      <p><span>Genre</span>: ${genre}</p>
-      <p><span>Producer</span>: ${producer}</p>
-      <p><span>Main actor</span>: ${mainActor}</p>
-      <p><span>Description</span>: ${description}</p>
-    </div>
-     <div class="movie-card-footer">
-  <div class="">
-    <p><span>Rate</span>: ${rate}</p>
-    <p><span>Created</span>: ${createdAt}</p>
-    <p><span>Updated</span>: ${updatedAt}</p>
+      <h2 class="text-xl not-italic ">${title}</h2>
+      <dl class="flex">
+        <dd class="card-titles">Country</dd>
+        <td>${country}</td>
+      </dl>
+      <dl class="flex">
+        <dd class="card-titles">Year</dd>
+        <td>${year}</td>
+      </dl>
+      <dl class="flex">
+        <dd class="card-titles">Genre</dd>
+        <td>${genre}</td>
+      </dl>
+      <dl class="flex"> 
+        <dd class="card-titles">Producer</dd>
+        <td>${producer}</td>
+      </dl>
+      <dl class="flex">
+        <dd class="card-titles">Main actor</dd>
+        <td>${mainActor}</td>
+      </dl>
+      <dl class="">
+        <dd class="card-titles">Description</dd>
+        <td>${description}</td>
+      </dl>
+      <dl class="flex">
+        <dd class="card-titles">Rate</dd>
+        <td>${rate}</td>
+      </dl>
+      <dl class="flex">
+        <dd class="card-titles">Created at</dd>
+        <td>${createdAt}</td>
+      </dl>
+      <dl class="flex">
+        <dd class="card-titles">Updated at</dd>
+        <td>${updatedAt}</td>
+      </dl>
   </div>
-  <button data-id = "${id}" data-action = "update" class="btn h-7 w-7  bg-transparent rounded" type="submit">&#9998;</button>
+     <button data-id = "${id}" data-action = "update" class="btn h-7 w-7 border border-gold rounded-full absolute top-2 right-4 bg-gray-400" type="submit">&#9998;</button>
 
-  </div>
+   </div>
   </div>`;
 }
 

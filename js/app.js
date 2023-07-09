@@ -97,8 +97,8 @@ function showNewMovieModal() {
   const modalForm = `<form data-action="create" id="addMovieForm">
       <div class="flex-col justify-between w-[300px] h-[550px] text-white">
          <div class="modal-window-form-field">
-           <label class="text-white italic font-bold text-xl" for="imgLink">Movie image</label>
-           <input name="imgLink" class="inputField" type="text" placeholder="Paste movie image Link" />
+           <label class="text-white italic font-bold text-xl" for="img">Movie image</label>
+           <input name="img" class="inputField" type="text" placeholder="Paste movie image Link" />
         </div>
         <div class="modal-window-form-field">
           <label class="text-white italic font-bold text-xl" for="title">Title</label>
@@ -151,13 +151,13 @@ function showUpdatedMovieModal(updatingMovie) {
     producer,
     mainActor,
     description,
-    imgLink,
+    img,
   } = updatingMovie;
   const modalForm = `<form data-action="updateMovie" data-updatingMovieId="${id}" id="modalForm">
       <div class="flex-col w-[300px] h-[550px]">
          <div class="modal-window-form-field">
-           <label class="text-white italic font-bold text-xl " for="imgLink">Movie image</label>
-           <input name="imgLink" value="${imgLink}" class="inputField" type="text" placeholder="Paste movie image Link" />
+           <label class="text-white italic font-bold text-xl " for="img">Movie image</label>
+           <input name="img" value="${img}" class="inputField" type="text" placeholder="Paste movie image Link" />
         </div>
         <div class="modal-window-form-field">
           <label class="text-white italic font-bold text-xl" for="title">Title</label>
@@ -203,7 +203,7 @@ function showUpdatedMovieModal(updatingMovie) {
 }
 
 function addMovie(form) {
-  const img = form.title.value;
+  const img = form.img.value;
   const title = form.title.value;
   console.log(title);
   const country = form.country.value;
@@ -222,8 +222,8 @@ function addMovie(form) {
     producer,
     mainActor,
     description,
-    createdAt: new Date().toString().toLocaleString(),
-    updatedAt: null,
+    createdAt: new Date().toLocaleString(),
+    updatedAt: new Date().toLocaleString()? new Date().toLocaleString(): "",
   };
 
   fetch(`${URL_BASE}/movies`, {
@@ -234,12 +234,12 @@ function addMovie(form) {
     .then((res) => res.json())
     .then((data) => {
       MOVIES.push(data);
-      renderMovieList(movieElem, MOVIES, true);
+      renderMovieList(movieList, MOVIES, true);
       form.reset();
     });
 }
 function updateMovie(form, updatingMovieId) {
-  const img = form.title.value;
+  const img = form.img.value;
   const title = form.title.value;
   const country = form.country.value;
   const year = form.year.value;
@@ -256,7 +256,7 @@ function updateMovie(form, updatingMovieId) {
     producer,
     mainActor,
     description,
-    updatedAt: new Date().toString().toLocaleString(),
+    updatedAt: new Date().toLocaleString(),
   };
 
   const updatingMovingIdx = MOVIES.findIndex(

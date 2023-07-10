@@ -29,7 +29,10 @@
             Search
           </button>
         </form>
-        <select id="sort-select" class="border border-white rounded  bg-gray-400">
+        <select
+          id="sort-select"
+          class="border border-white rounded bg-gray-400"
+        >
           <option value="title/asc" selected>Title A-Z</option>
           <option value="title/desc">Title Z-A</option>
           <option value="genre/asc">Genre A-Z</option>
@@ -58,14 +61,34 @@
           </button>
         </div>
       </div>
-      <div
-        class="movie-list flex gap-0.5 justify-between p w-full flex-wrap"
-        id="movie-list"
-      ></div>
+      <div class="flex gap-3">
+        <div class="side-bar w-[200px] text-white">
+          <form class="flex flex-col gap-2" id="filterForm">
+            <fieldset class="fieldset rounded">
+              <legend class="card-titles text-xl">Genre</legend>
+              <div class="flex flex-col">
+                <label for="genre/Action">'
+                  <input type="checkbox" name="genre/Action">
+                  <span>Action</span>
+                </label>
+                <label for="genre/Comedy">'
+                  <input type="checkbox" name="genre/Comedy">
+                  <span>Comedy</span>
+                </label>
+              </div>
+            </fieldset>
+            <button class="h-8 w-28 bg-indigo-950 border rounded text-white hover:text-black hover:bg-white" type="submit">Filter</button>
+          </form>
+        </div>
+        <div
+          class="movie-list flex gap-0.5 justify-between p flex-1 flex-wrap"
+          id="movie-list"
+        ></div>
+      </div>
     </div>
     <div
       id="modal-back-drop"
-      class="modal-backdrop fixed inset-0 bg-black/50 flex items-center justify-center"
+      class="modal-backdrop fixed inset-0 morfizm flex items-center justify-center"
     >
       <div class="modal rounded border bg-slate-400 p-4 relative">
         <button

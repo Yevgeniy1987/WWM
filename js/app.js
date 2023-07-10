@@ -7,7 +7,30 @@ const addNewMovieBtn = document.getElementById("add-new-movie-btn");
 const closeModalWindow = document.getElementById("close-modal-window");
 const modalBackDrop = document.getElementById("modal-back-drop");
 const modalBody = document.getElementById("modal-body");
+const filterForm = document.getElementById("filterForm");
 console.log(modalBody);
+
+filterForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const genreCheckboxes = Array.from(
+    form.querySelectorAll('input[name*="genre"]:checked')
+  );
+  const selectedGenres = genreCheckboxes.map(checkbox => {
+    const genre =`genre=${checkbox.name.split("/")[1]}` 
+    return genre;
+  });
+  console.log(selectedGenres);
+
+  const genreFilter = selectedGenres.join("&");
+  
+  fetch(`${URL_BASE}/movies?${genreFilter}`)
+  .then((res) => res.json())
+  .then((data) => {
+    MOVIES = data;
+    renderMovieList(movieList, MOVIES, true);
+  });
+});
 
 window.addEventListener("beforeunload", saveAddMovieFormValues);
 
@@ -223,7 +246,7 @@ function addMovie(form) {
     mainActor,
     description,
     createdAt: new Date().toLocaleString(),
-    updatedAt: new Date().toLocaleString()? new Date().toLocaleString(): "",
+    updatedAt: new Date().toLocaleString() ? new Date().toLocaleString() : "",
   };
 
   fetch(`${URL_BASE}/movies`, {
@@ -297,29 +320,29 @@ function createMovieCard(card) {
     updatedAt,
     id,
   } = card;
-  return `<div class="border-gray-400 border border-solid rounded-lg p-2 movie-card relative w-[45%] one-col bg-transparent text-gray-400 compact-card">
+  return `<div class="border-gray-400 border border-solid rounded-lg p-2 movie-card relative w-[32%] one-col bg-transparent text-gray-400 compact-card">
     <div class="movie-card-header">
       <img class="img-feature" src="${img}" alt="Movie-icon"/>
     </div>
-    <div class="movie-card-main">
-      <h2 class="text-xl not-italic ">${title}</h2>
-      <dl class="flex">
+    <div class="movie-card-main flex-1">
+      <h2 class="text-2xl not-italic font-bold card-titles"><a href="/pages/movie.html#${id}">${title}</a></h2>
+      <dl class="flex justify-between">
         <dd class="card-titles">Country</dd>
         <td>${country}</td>
       </dl>
-      <dl class="flex">
+      <dl class="flex justify-between">
         <dd class="card-titles">Year</dd>
         <td>${year}</td>
       </dl>
-      <dl class="flex">
+      <dl class="flex justify-between">
         <dd class="card-titles">Genre</dd>
         <td>${genre}</td>
       </dl>
-      <dl class="flex"> 
+      <dl class="flex flex-col justify-between flex-wrap"> 
         <dd class="card-titles">Producer</dd>
         <td>${producer}</td>
       </dl>
-      <dl class="flex">
+      <dl class="flex justify-between">
         <dd class="card-titles">Main actor</dd>
         <td>${mainActor}</td>
       </dl>
@@ -327,20 +350,20 @@ function createMovieCard(card) {
         <dd class="card-titles">Description</dd>
         <td>${description}</td>
       </dl>
-      <dl class="flex">
+      <dl class="flex justify-between">
         <dd class="card-titles">Rate</dd>
         <td>${rate}</td>
       </dl>
-      <dl class="flex">
+      <dl class="flex justify-between">
         <dd class="card-titles">Created at</dd>
         <td>${createdAt}</td>
       </dl>
-      <dl class="flex">
+      <dl class="flex justify-between">
         <dd class="card-titles">Updated at</dd>
         <td>${updatedAt}</td>
       </dl>
   </div>
-     <button data-id = "${id}" data-action = "update" class="btn h-7 w-7 border border-gold rounded-full absolute top-2 right-4 bg-gray-400" type="submit">&#9998;</button>
+     <button data-id = "${id}" data-action = "update" class="btn h-7 w-7 border border-gold rounded-full absolute top-3 left-4 bg-gray-400" type="submit">&#9998;</button>
 
    </div>
   </div>`;

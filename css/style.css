@@ -311,19 +311,20 @@ body.modal-open > .modal-backdrop {
   color: white;
 }
 .img-feature {
-  object-fit: cover;
+  object-fit: contain;
   height: 420px;
-  width: 300px;
-}
-.movie-list.one-col > .compact-card > .movie-card-header {
-  flex-grow: 1;
-  height: 420px;
-  width: 50%;
-}
-.movie-list.one-col > .compact-card > .movie-card-header > .img-feature {
-  object-fit: cover;
   width: 100%;
 }
+.movie-list.one-col > .compact-card > .movie-card-header {
+display: none;
+}
+.movie-list.one-col > .compact-card {
+  width: 50%;
+  }
+/* .movie-list.one-col > .compact-card > .movie-card-header > .img-feature {
+  object-fit: contain;
+  width: 100%;
+} */
 .card-titles {
   color: rgb(232, 230, 230);
   font-weight: 700;

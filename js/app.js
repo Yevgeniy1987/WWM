@@ -16,20 +16,20 @@ filterForm.addEventListener("submit", (e) => {
   const genreCheckboxes = Array.from(
     form.querySelectorAll('input[name*="genre"]:checked')
   );
-  const selectedGenres = genreCheckboxes.map(checkbox => {
-    const genre =`genre=${checkbox.name.split("/")[1]}` 
+  const selectedGenres = genreCheckboxes.map((checkbox) => {
+    const genre = `genre=${checkbox.name.split("/")[1]}`;
     return genre;
   });
   console.log(selectedGenres);
 
   const genreFilter = selectedGenres.join("&");
-  
+
   fetch(`${URL_BASE}/movies?${genreFilter}`)
-  .then((res) => res.json())
-  .then((data) => {
-    MOVIES = data;
-    renderMovieList(movieList, MOVIES, true);
-  });
+    .then((res) => res.json())
+    .then((data) => {
+      MOVIES = data;
+      renderMovieList(movieList, MOVIES, true);
+    });
 });
 
 window.addEventListener("beforeunload", saveAddMovieFormValues);
@@ -326,44 +326,46 @@ function createMovieCard(card) {
     </div>
     <div class="movie-card-main flex-1">
       <h2 class="text-2xl not-italic font-bold card-titles"><a href="/pages/movie.html#${id}">${title}</a></h2>
-      <dl class="flex justify-between">
-        <dd class="card-titles">Country</dd>
-        <td>${country}</td>
+      <dl class="flex flex-col">
+        <div class="flex">
+         <dt class="card-titles">Country</dt>
+         <dd>${country}</dd>
+        </div>
+        <div class="flex">
+         <dt class="card-titles">Year</dt>
+         <dd>${year}</dd>
+        </div>
+        <div class="flex"> 
+         <dt class="card-titles">Genre</dt>
+         <dd>${genre}</dd>
+        </div>
+         <div class="flex"> 
+          <dt class="card-titles">Producer</dt>
+          <dd>${producer}</dd>
+         </div>
+        <div class="flex"> 
+         <dt class="card-titles">Main Actor</dt>
+         <dd>${mainActor}</dd>
+        </div>
+        <div class="flex"> 
+         <dt class="card-titles">Description</dt>
+         <dd>${description}</dd>
+        </div>
+        <div class="flex"> 
+         <dt class="card-titles">Rate</dt>
+         <dd>${rate}</dd>
+        </div>
+        <div class="flex"> 
+         <dt class="card-titles">Create At</dt>
+         <dd>${createdAt}</dd>
+        </div>
+        <div class="flex"> 
+         <dt class="card-titles">Updated At</dt>
+         <dd>${updatedAt}</dd> 
+        </div>
       </dl>
-      <dl class="flex justify-between">
-        <dd class="card-titles">Year</dd>
-        <td>${year}</td>
-      </dl>
-      <dl class="flex justify-between">
-        <dd class="card-titles">Genre</dd>
-        <td>${genre}</td>
-      </dl>
-      <dl class="flex flex-col justify-between flex-wrap"> 
-        <dd class="card-titles">Producer</dd>
-        <td>${producer}</td>
-      </dl>
-      <dl class="flex justify-between">
-        <dd class="card-titles">Main actor</dd>
-        <td>${mainActor}</td>
-      </dl>
-      <dl class="">
-        <dd class="card-titles">Description</dd>
-        <td>${description}</td>
-      </dl>
-      <dl class="flex justify-between">
-        <dd class="card-titles">Rate</dd>
-        <td>${rate}</td>
-      </dl>
-      <dl class="flex justify-between">
-        <dd class="card-titles">Created at</dd>
-        <td>${createdAt}</td>
-      </dl>
-      <dl class="flex justify-between">
-        <dd class="card-titles">Updated at</dd>
-        <td>${updatedAt}</td>
-      </dl>
-  </div>
-     <button data-id = "${id}" data-action = "update" class="btn h-7 w-7 border border-gold rounded-full absolute top-3 left-4 bg-gray-400" type="submit">&#9998;</button>
+    </div>
+     <button data-id = "${id}" data-action = "update" class="btn h-7 w-7 border border-gold rounded-full absolute top-3 right-4 text-black bg-gray-400" type="submit">&#9998;</button>
 
    </div>
   </div>`;

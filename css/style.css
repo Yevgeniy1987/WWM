@@ -318,9 +318,7 @@ body.modal-open > .modal-backdrop {
 .movie-list.one-col > .compact-card > .movie-card-header {
 display: none;
 }
-.movie-list.one-col > .compact-card {
-  width: 50%;
-  }
+
 /* .movie-list.one-col > .compact-card > .movie-card-header > .img-feature {
   object-fit: contain;
   width: 100%;
@@ -333,7 +331,7 @@ display: none;
 .movie-list.one-col > .compact-card {
   display: flex;
   flex-direction: row;
-  width: 70%;
+  width: 50%;
   gap: 10px;
   
 }
